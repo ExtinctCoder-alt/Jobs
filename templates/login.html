@@ -99,7 +99,7 @@
           <div>
             {% if employer=='As an Employer' %}
             <div class="input-group" style='margin-bottom:10px'>
-                  <input type="text" class="form-control" placeholder="Companey Key" required>
+                  <input type="text" class="form-control" placeholder="Company Key" required>
             </div>
             {% endif %}
           </div>
@@ -107,9 +107,17 @@
           <button type="submit" class="btn-custom">Login</button>
           <button type="button" class="btn-google">Login with Google</button>
         </form>
-        
         <div class="sign-up pt-3">
-        <p>Don't have an account? <a href="/signup/">Sign up</a></p>
+          {% if employer=='As an Employer'%}
+            <p>Don't have an account? <a href="/signup/employer/">Sign up</a></p>
+          {% endif %}
+          {% if employer!='As an Employer'%}
+            <p>Don't have an account? <a href="/signup/">Sign up</a></p>
+          {% endif %}
+        </div>
+        
+        
+        
         </div>
       </div>
     </div>

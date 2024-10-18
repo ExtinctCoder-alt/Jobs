@@ -98,9 +98,16 @@
               <div class="input-group" style='margin-bottom:10px'>
                   <input type="email" class="form-control" placeholder="Email" required>
               </div>
-              <div class="input-group mb-2">
+              <div class="input-group "style='margin-bottom:10px'>
                   <input type="password" class="form-control" placeholder="Password" required>
               </div>
+              <div>
+                  {% if employer=='As an Employer' %}
+                  <div class="input-group" style='margin-bottom:10px'>
+                        <input type="text" class="form-control" placeholder="Company Key" required>
+                  </div>
+                  {% endif %}
+                </div>
               <button type="submit" class="btn-custom">Signup</button>
               <button type="button" class="btn-google">Signup with Google</button>
           </form>
