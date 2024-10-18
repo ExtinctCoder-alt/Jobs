@@ -27,25 +27,34 @@ JOBS=[
     'salary':'$ 120,000'
   } 
 ]
+
 @app.route('/')
 def loginpage():
-  return render_template('home.html',log_status='Logout',jobs=JOBS)
+  return render_template('home.html',log_status='Logout',jobs=JOBS,inlinetext='Are you an employer?')
 
 @app.route("/jobs/")
 def home():
-  return render_template("jobs.html",jobs=JOBS,log_status='Logout')
+  return render_template("jobs.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?')
 
 @app.route('/aboutus/')
 def about_us():
-  return render_template('about_us.html',log_status='Logout')
+  return render_template('about_us.html',log_status='Logout',inlinetext='Are you an employer?')
 
 @app.route('/login/')
 def login():
-  return render_template('login.html',log_status='Sign Up')
+  return render_template('login.html',log_status='Sign Up',inlinetext='Are you an employer?')
 
 @app.route('/signup/')
 def signup():
-  return render_template('signup.html',log_status='Login')
+  return render_template('signup.html',log_status='Login',inlinetext='Are you an employer?')
+
+@app.route('/signup/employer/')
+def signup_employer():
+  return render_template('signup.html',log_status='Login',employer='As an Employer')
+
+@app.route('/login/employer/')
+def login_employer():
+  return render_template('login.html',log_status='Sign Up',employer='As an Employer')
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0',debug=True)
