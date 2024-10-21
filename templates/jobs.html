@@ -17,7 +17,12 @@
       <h2 class='text-center pb-2 mb-4 mt-4'>Available Jobs in your Area</h2>
       <div>
         {% for job in jobs %}
-          {% include 'jobitem.html' %}
+          {% if job['location']==loc%}
+            {% include 'jobitem.html' %}
+          {% endif %}
+          {% if loc=='All' %}
+            {% include 'jobitem.html' %}
+          {% endif %}
         {% endfor %}
       </div>
       <div class='text-center'>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, request ,render_template
 
 app = Flask(__name__)
 
@@ -32,9 +32,10 @@ JOBS=[
 def loginpage():
   return render_template('home.html',log_status='Logout',jobs=JOBS,inlinetext='Are you an employer?')
 
-@app.route("/jobs/")
+@app.route("/jobs/",methods=[ 'GET','POST'])
 def home():
-  return render_template("jobs.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?')
+  location=request.form.get('location')
+  return render_template("jobs.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',loc=location)
 
 @app.route('/aboutus/')
 def about_us():

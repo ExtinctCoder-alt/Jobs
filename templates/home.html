@@ -20,21 +20,22 @@
   <body>
     {%include 'navbar.html' %}
     <div class='container justify-content-center text-center '>
-    <h1 class='mt-4'>LinkedOut</h1>
-    <div style='padding-bottom:170px'>Find Jobs near you</div>
-    <div class='black-box' style='padding:25px'>
-    <h3 class='mt-2'>Select your nearest location</h3>
-    <div class="input-group shadow-sm" style='padding-top:20px'>
-      <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" pl>
-        <option value="" selected disabled hidden>All</option>
-        {% for job in jobs %}
-        <option value='{{job["location"]}}'>{{job['location']}}</option>
-        {%endfor%}
-      </select>
-      <a href='/jobs/' class="btn btn-outline-secondary text-body-emphasis" type="button">Go</a>
-    </div>
-      
-    </div>
+      <h1 class='mt-4'>LinkedOut</h1>
+      <div style='padding-bottom:170px'>Find Jobs near you</div>
+      <div class='black-box' style='padding:25px'>
+        <h3 class='mt-2'>Select your nearest location</h3>
+        <form action="/jobs/" method="POST">
+        <div class="input-group shadow-sm" style='padding-top:20px'>
+          <select id="location" name="location" class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+               <option value="All" selected>All</option>
+              {% for job in jobs %}
+              <option value="{{job['location']}}"">{{job['location']}}</option>
+              {% endfor %}
+          </select>
+          <input type="submit"class="btn btn-outline-secondary text-body-emphasis" value="GO">
+        </div>
+        </form>
+      </div>
     </div>
   </body>
 </html>
