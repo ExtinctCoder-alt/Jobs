@@ -28,8 +28,8 @@
         <div class="input-group shadow" style='padding-top:20px'>
           <select id="location" name="location" class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
                <option value="All" selected>All</option>
-              {% for job in jobs %}
-              <option value="{{job['location']}}"">{{job['location']}}</option>
+              {% for job in locations %}
+              <option value="{{job}}"">{{job}}</option>
               {% endfor %}
           </select>
           <input type="submit"class="btn btn-outline-secondary text-body-emphasis" value="GO">
