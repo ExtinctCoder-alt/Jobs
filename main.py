@@ -3,7 +3,7 @@ from flask import Flask, request ,render_template
 app = Flask(__name__)
 
 JOBS=[
-  {'job_name':'Data Analyst','location':'Bengaluru'},
+  {'job_name':'Data Analyst','location':'Bangalore'},
   {'job_name':'Front-end Developer','location':'Delhi','salary':'Rs. 70,00,000'},
   {'job_name':'SDE - 3','location':'Mumbai','salary':'Rs. 38,00,000'},
   {'job_name':'HR','location':'Remote','salary':'$ 120,000'}, 
