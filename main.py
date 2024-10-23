@@ -55,11 +55,11 @@ def loginpage():
 def home():
   category=request.form.get('category')
   if category=='location':
-     return render_template("afterhome.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',categorylist=locations)
+     return render_template("afterhome.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',categorylist=locations,name='locations')
   elif category=='job_name':
-     return render_template("afterhome.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',categorylist=job_name)
+     return render_template("afterhome.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',categorylist=job_name,name='jobs')
   elif category =='salary':
-    return render_template("afterhome.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',categorylist=salary)
+    return render_template("afterhome.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',categorylist=salary,name='salary')
   else:
     return render_template("jobs.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',categorylist=JOBS)
 
