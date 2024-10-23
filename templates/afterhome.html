@@ -16,21 +16,21 @@
     }
   </style>
   </head>
-  
+
   <body>
     {%include 'navbar.html' %}
     <div class='container justify-content-center text-center '>
       <h1 class='mt-4'>LinkedOut</h1>
       <div style='padding-bottom:170px'>Find Jobs near you</div>
       <div class='black-box' style='padding:25px'>
-        <h3 class='mt-2'>Select your filter</h3>
-        <form action="/filter/" method="POST">
+        <h3 class='mt-2'>Here is the list based on {{cateogrylist}}</h3>
+        <form action="/jobs/" method="POST">
         <div class="input-group shadow" style='padding-top:20px'>
-          <select id="category" name="category" class="form-select" aria-label="Example select with button addon">
-              <option value="all" selected>All</option>
-              <option value="job_name">Based on Jobs</option>
-              <option value="salary">Salary</option>
-              <option value="location">Location</option>
+          <select id="category2" name="category2" class="form-select" aria-label="Example select with button addon">
+               <option value="All" selected>All</option>
+              {% for job in categorylist %}
+              <option value="{{job}}"">{{job}}</option>
+              {% endfor %}
           </select>
           <input type="submit"class="btn btn-outline-secondary text-body-emphasis" value="GO">
         </div>

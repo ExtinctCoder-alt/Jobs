@@ -2,59 +2,80 @@ from flask import Flask, request ,render_template
 
 app = Flask(__name__)
 
-JOBS=[
-  {'job_name':'Data Analyst','location':'Bangalore'},
-  {'job_name':'Front-end Developer','location':'Delhi','salary':'Rs. 70,00,000'},
-  {'job_name':'SDE - 3','location':'Mumbai','salary':'Rs. 38,00,000'},
-  {'job_name':'HR','location':'Remote','salary':'$ 120,000'}, 
-  {"job_name": "Software Engineer", "location": "Bangalore", "salary": "hehe"},
-  {"job_name": "Data Scientist", "location": "Hyderabad", "salary": "₹1,500,000"},
-  {"job_name": "DevOps Engineer", "location": "Pune", "salary": "₹1,300,000"},
-  {"job_name": "Full Stack Developer", "location": "Chennai", "salary": "₹1,100,000"},
-  {"job_name": "Backend Developer", "location": "Mumbai", "salary": "₹1,250,000"},
-  {"job_name": "Frontend Developer", "location": "Delhi", "salary": "₹1,150,000"},
-  {"job_name": "QA Engineer", "location": "Bangalore", "salary": "₹1,000,000"},
-  {"job_name": "Cloud Engineer", "location": "Hyderabad", "salary": "₹1,400,000"},
-  {"job_name": "Machine Learning Engineer", "location": "Pune", "salary": "₹1,600,000"},
-  {"job_name": "Mobile App Developer", "location": "Chennai"},
-  {"job_name": "UI/UX Designer", "location": "Mumbai", "salary": "₹900,000"},
-  {"job_name": "Systems Analyst", "location": "Delhi", "salary": "₹1,100,000"},
-  {"job_name": "Network Engineer", "location": "Bangalore", "salary": "₹1,050,000"},
-  {"job_name": "Technical Support Engineer", "location": "Hyderabad", "salary": "₹800,000"},
-  {"job_name": "Database Administrator", "location": "Pune", "salary": "₹950,000"},
-  {"job_name": "Security Analyst", "location": "Chennai", "salary": "₹1,100,000"},
-  {"job_name": "Product Manager", "location": "Mumbai", "salary": "₹1,800,000"},
-  {"job_name": "Web Developer", "location": "Delhi", "salary": "₹1,050,000"},
-  {"job_name": "Game Developer", "location": "Bangalore"},
-  {"job_name": "Blockchain Developer", "location": "Hyderabad", "salary": "Aukat ke bahar"},
-  # Remote jobs
-  {"job_name": "Remote Software Engineer", "location": "Remote", "salary": "$80,000"},
-  {"job_name": "Remote Data Analyst", "location": "Remote", "salary": "€70,000"},
-  {"job_name": "Remote Project Manager", "location": "Remote", "salary": "£60,000"},
-  {"job_name": "Remote UX Designer", "location": "Remote", "salary": "$75,000"},
-  {"job_name": "Remote Frontend Developer", "location": "Remote", "salary": "₹1,200,000"},
-  {"job_name": "Remote DevOps Engineer", "location": "Remote", "salary": "€80,000"},
-  {"job_name": "Remote QA Tester", "location": "Remote", "salary": "£50,000"},
-  {"job_name": "Remote Data Scientist", "location": "Remote", "salary": "$90,000"},
+JOBS = [
+  {'job_name': 'Data Analyst', 'location': 'Bangalore', 'salary': '1250000 INR'},
+  {'job_name': 'Data Analyst', 'location': 'Remote', 'salary': '60000 GBP'},
+  {'job_name': 'Front-end Developer', 'location': 'Delhi', 'salary': '1600000 INR'},
+  {'job_name': 'SDE - 3', 'location': 'Mumbai', 'salary': '1050000 INR'},
+  {'job_name': 'SDE - 3', 'location': 'Remote', 'salary': '90000 USD'},
+  {'job_name': 'HR', 'location': 'Remote', 'salary': '7000000 INR'},
+  {'job_name': 'Software Engineer', 'location': 'Bangalore', 'salary': '950000 INR'},
+  {'job_name': 'Software Engineer', 'location': 'Remote', 'salary': '7000000 INR'},
+  {'job_name': 'DevOps Engineer', 'location': 'Pune', 'salary': '1200000 INR'},
+  {'job_name': 'DevOps Engineer', 'location': 'Remote', 'salary': '1300000 INR'},
+  {'job_name': 'Full Stack Developer', 'location': 'Chennai', 'salary': '3800000 INR'},
+  {'job_name': 'Backend Developer', 'location': 'Mumbai', 'salary': '800000 INR'},
+  {'job_name': 'Frontend Developer', 'location': 'Delhi', 'salary': '1400000 INR'},
+  {'job_name': 'QA Engineer', 'location': 'Bangalore', 'salary': '1800000 INR'},
+  {'job_name': 'Cloud Engineer', 'location': 'Hyderabad', 'salary': '1050000 INR'},
+  {'job_name': 'Machine Learning Engineer', 'location': 'Pune', 'salary': '70000 EUR'},
+  {'job_name': 'Machine Learning Engineer', 'location': 'Remote', 'salary': '1100000 INR'},
+  {'job_name': 'Mobile App Developer', 'location': 'Chennai', 'salary': '60000 GBP'},
+  {'job_name': 'UI/UX Designer', 'location': 'Mumbai', 'salary': '70000 EUR'},
+  {'job_name': 'Systems Analyst', 'location': 'Delhi', 'salary': '90000 USD'},
+  {'job_name': 'Network Engineer', 'location': 'Bangalore', 'salary': '7000000 INR'},
+  {'job_name': 'Technical Support Engineer', 'location': 'Hyderabad', 'salary': '900000 INR'},
+  {'job_name': 'Database Administrator', 'location': 'Pune', 'salary': '75000 USD'},
+  {'job_name': 'Security Analyst', 'location': 'Chennai', 'salary': '70000 EUR'},
+  {'job_name': 'Product Manager', 'location': 'Mumbai', 'salary': '80000 EUR'},
+  {'job_name': 'Web Developer', 'location': 'Delhi', 'salary': '120000 USD'},
+  {'job_name': 'Game Developer', 'location': 'Bangalore', 'salary': '1250000 INR'},
+  {'job_name': 'Blockchain Developer', 'location': 'Hyderabad', 'salary': '1600000 INR'},
+  {'job_name': 'Project Manager', 'location': 'Remote', 'salary': '1250000 INR'}
 ]
 
 
-
 loc=[]
+salary=[]
+job_name=[]
 for job in JOBS:
   loc.append(job['location'])
+  salary.append(job['salary'])
+  job_name.append(job['job_name'])
+salary=list(set(salary))
 locations=list(set(loc))
-
-
+job_name=list(set(job_name))
+salary.sort()
 
 @app.route('/')
 def loginpage():
   return render_template('home.html',log_status='Logout',jobs=JOBS,locations=locations,inlinetext='Are you an employer?')
 
-@app.route("/jobs/",methods=[ 'GET','POST'])
+@app.route("/filter/",methods=[ 'GET','POST'])
 def home():
-  location=request.form.get('location')
-  return render_template("jobs.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',loc=location)
+  category=request.form.get('category')
+  if category=='location':
+     return render_template("afterhome.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',categorylist=locations)
+  elif category=='job_name':
+     return render_template("afterhome.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',categorylist=job_name)
+  elif category =='salary':
+    return render_template("afterhome.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',categorylist=salary)
+  else:
+    return render_template("jobs.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',categorylist=JOBS)
+
+
+@app.route('/jobs/',methods=['get','post'])
+def jobs():
+    final=request.form.get('category2')
+    if final in locations:
+      x='location'
+    elif final in job_name:
+      x='job_name'
+    elif final in salary:
+      x='salary'
+    else:
+      x='all'
+    return render_template("jobs.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',x=x,y=final)
 
 @app.route('/aboutus/')
 def about_us():

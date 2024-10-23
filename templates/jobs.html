@@ -22,10 +22,10 @@
       <h2 class='text-center pb-2 mb-4 mt-4'>Available Jobs in your Area</h2>
       <div>
         {% for job in jobs %}
-          {% if job['location']==loc%}
+          {% if job[x]== y %}
             {% include 'jobitem.html' %}
           {% endif %}
-          {% if loc=='All' %}
+          {% if x=='all' %}
             {% include 'jobitem.html' %}
           {% endif %}
         {% endfor %}
