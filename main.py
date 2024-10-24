@@ -47,19 +47,26 @@ locations=list(set(loc))
 job_name=list(set(job_name))
 salary.sort()
 
+
+
 @app.route('/')
 def loginpage():
   return render_template('home.html',log_status='Logout',jobs=JOBS,locations=locations,inlinetext='Are you an employer?')
+  
 
 @app.route("/filter/",methods=[ 'GET','POST'])
 def home():
   category=request.form.get('category')
+  
   if category=='location':
-     return render_template("afterhome.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',categorylist=locations,name='locations')
+     return render_template("filter.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',categorylist=locations,name='locations')
+    
   elif category=='job_name':
-     return render_template("afterhome.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',categorylist=job_name,name='jobs')
+     return render_template("filter.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',categorylist=job_name,name='jobs')
+    
   elif category =='salary':
-    return render_template("afterhome.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',categorylist=salary,name='salary')
+    return render_template("filter.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',categorylist=salary,name='salary',salary=salary)
+    
   else:
     return render_template("jobs.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',categorylist=JOBS)
 
@@ -75,27 +82,35 @@ def jobs():
       x='salary'
     else:
       x='all'
+      
     return render_template("jobs.html",jobs=JOBS,log_status='Logout',inlinetext='Are you an employer?',x=x,y=final)
+  
 
 @app.route('/aboutus/')
 def about_us():
   return render_template('about_us.html',log_status='Logout',inlinetext='Are you an employer?')
+  
 
 @app.route('/login/')
 def login():
   return render_template('login.html',log_status='Sign Up',inlinetext='Are you an employer?')
+  
 
 @app.route('/signup/')
 def signup():
   return render_template('signup.html',log_status='Login',inlinetext='Are you an employer?')
+  
 
 @app.route('/signup/employer/')
 def signup_employer():
   return render_template('signup.html',log_status='Login',employer='As an Employer')
+  
 
 @app.route('/login/employer/')
 def login_employer():
   return render_template('login.html',log_status='Sign Up',employer='As an Employer')
+
+
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0',debug=True)
